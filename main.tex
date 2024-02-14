@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{listings} % For formatting and highlighting code
+
+% Document margins
+\geometry{a4paper, margin=1in}
+
+% Section title formatting
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{blue}}{\thesection}{1em}{}
+
+% Subsection title formatting
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{blue!50!black}}{\thesubsection}{1em}{}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Listings (code) setup
+\lstset{
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    language=bash,
+    frame=single,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+% Document metadata
+\title{\textbf{General Guide for Synchronizing Projects Between GitHub and GitLab}}
+\author{Venkata Virajit Garbhapu, Vincent Le Gallic \\ Télécom Paris}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document provides a general framework for synchronizing various types of projects between GitHub and GitLab, emphasizing the enhancement of collaboration and version control across different platforms. It includes examples such as academic writing with Overleaf, software development projects, and data analysis projects to demonstrate the workflow's broad applicability.
+
+\section{Prerequisites}
+Ensure you have:
+\begin{itemize}
+  \item GitHub and GitLab accounts.
+  \item Familiarity with Git commands.
+  \item A project on GitHub for synchronization with GitLab.
+\end{itemize}
+
+\section{Step-by-Step Guide}
+
+\subsection{General Setup for Project Synchronization}
+Configure your GitHub project for direct synchronization with GitLab to mirror changes made in one repository to the other.
+
+\subsection{Creating Personal Access Tokens}
+Generate personal access tokens in both platforms for secure repository interactions without manual password entry.
+
+\subsection{Cloning and Setting Up the Repositories Locally}
+Clone the GitHub project repository locally to facilitate synchronization between GitHub and GitLab.
+
+\lstset{language=bash}
+\begin{lstlisting}
+git clone <GitHub Project URL>
+cd <Project Directory>
+git remote add gitlab <GitLab Project URL>
+\end{lstlisting}
+
+\subsection{Synchronizing Changes Between Repositories}
+Bidirectionally synchronize changes depending on the source of updates.
+
+\subsubsection{From GitHub to GitLab}
+\lstset{language=bash}
+\begin{lstlisting}
+git pull origin main
+git push gitlab main
+\end{lstlisting}
+
+\subsubsection{From GitLab to GitHub}
+\lstset{language=bash}
+\begin{lstlisting}
+git pull gitlab main
+git push origin main
+\end{lstlisting}
+
+\subsection{Examples of Projects for Synchronization}
+\subsubsection{Academic Writing with Overleaf}
+Synchronize academic manuscripts or theses between Overleaf (via GitHub) and GitLab for collaborative editing and version control.
+
+\subsubsection{Software Development Projects}
+For software development, ensure codebase consistency across GitHub and GitLab, facilitating collaborative development and issue tracking.
+
+\subsubsection{Data Analysis Projects}
+Share and synchronize data analysis scripts and datasets between GitHub and GitLab to maintain version history and collaboration across computational research teams.
+
+\section{Authentication and Security}
+Use HTTPS URLs and personal access tokens for secure authentication during push/pull operations. SSH keys should be configured on both platforms for those using SSH.
+
+\section{Conclusion}
+This guide offers a versatile approach to synchronizing projects across GitHub and GitLab, catering to a wide range of applications from academic writing to software development and data analysis. By leveraging this workflow, teams can enhance project management and collaborative efforts, ensuring up-to-date synchronization across platforms.
+
+\end{document}
